@@ -1,6 +1,9 @@
-import { generateToken } from "../lib/utils.js";
-import User from "../models/User.js";
 import bcrypt from "bcryptjs";
+
+import User from "../models/User.js";
+import { generateToken } from "../lib/utils.js";
+import { sendWelcomeEmail } from "../emails/emailHandlers.js";
+import { ENV } from "../lib/env.js";
 
 export const signup = async (req, res) => {
   const { fullName, email, password } = req.body;
@@ -49,6 +52,17 @@ export const signup = async (req, res) => {
         email: savedUser.email,
         profilePic: savedUser.profilePic,
       });
+
+      // Send welcome email
+      try {
+        await sendWelcomeEmail(
+          savedUser.email,
+          savedUser.fullName,
+          ENV.CLIENT_URL,
+        );
+      } catch (error) {
+        console.error("Error sending welcome email:", error);
+      }
     }
   } catch (error) {
     console.error("Error in signup controller:", error);
