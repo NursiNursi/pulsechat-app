@@ -1,16 +1,21 @@
 import express from "express";
 import dotenv from "dotenv";
 import path from "path";
+import dns from "dns";
 
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
+import { connectDB } from "./lib/db.js";
 
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
 const app = express();
 const __dirname = path.resolve();
+
+app.use(express.json()); // middleware to parse JSON request bodies
 
 app.use("/api/auth", authRoutes);
 app.use("/api/message", messageRoutes);
@@ -26,4 +31,5 @@ if (process.env.NODE_ENV === "production") {
 
 app.listen(PORT, () => {
   console.log("Server is running on port 3000 lessgo");
+  connectDB();
 });
