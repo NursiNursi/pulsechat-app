@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import dns from "dns";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
@@ -16,6 +17,7 @@ const app = express();
 const __dirname = path.resolve();
 
 app.use(express.json()); // middleware to parse JSON request bodies
+app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
