@@ -5,8 +5,13 @@ import NoChatsFound from "./NoChatsFound";
 import { useAuthStore } from "../store/useAuthStore";
 
 function ChatsList() {
-  const { getMyChatPartners, chats, isUsersLoading, setSelectedUser } =
-    useChatStore();
+  const {
+    getMyChatPartners,
+    chats,
+    isUsersLoading,
+    setSelectedUser,
+    selectedUser,
+  } = useChatStore();
   const { onlineUsers } = useAuthStore();
 
   useEffect(() => {
@@ -22,7 +27,10 @@ function ChatsList() {
         <div
           key={chat._id}
           className="bg-cyan-500/10 p-4 rounded-lg cursor-pointer hover:bg-cyan-500/20 transition-colors"
-          onClick={() => setSelectedUser(chat)}
+          onClick={() => {
+            setSelectedUser(chat);
+            console.log("xxx", selectedUser);
+          }}
         >
           <div className="flex items-center gap-3">
             <div
