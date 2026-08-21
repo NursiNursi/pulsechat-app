@@ -8,15 +8,15 @@ import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 import { connectDB } from "./lib/db.js";
 import { ENV } from "./lib/env.js";
+import { app, server } from "./lib/socket.js";
 
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 const PORT = ENV.PORT || 3000;
 
-const app = express();
 const __dirname = path.resolve();
 
-app.use(express.json()); // middleware to parse JSON request bodies
+app.use(express.json({ limit: "5mb" })); // middleware to parse JSON request bodies
 app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
 app.use(cookieParser());
 
@@ -32,7 +32,17 @@ if (ENV.NODE_ENV === "production") {
   });
 }
 
-app.listen(PORT, () => {
-  console.log("Server is running on port 3000 lessgo");
-  connectDB();
-});
+// app.listen(PORT, () => {
+//   console.log("Server is running on port 3000 lessgo");
+//   connectDB();
+// });
+
+const startServer = async () => {
+  await connectDB();
+
+  server.listen(PORT, () => {
+    console.log("Server is running on port", PORT);
+  });
+};
+
+startServer();

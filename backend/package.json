@@ -16,6 +16,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.10.1",
     "pulsechat-app": "file:..",
-    "resend": "^6.18.1"
+    "resend": "^6.18.1",
+    "socket.io": "^4.8.1"
   }
 }
