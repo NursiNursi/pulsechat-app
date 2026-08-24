@@ -5,6 +5,8 @@ export const arcjetMiddleware = async (req, res, next) => {
   try {
     const decision = await aj.protect(req);
 
+    console.log(JSON.stringify(decision.results, null, 2));
+
     if (decision.isDenied()) {
       if (decision.reason.isRateLimit()) {
         return res.status(429).json({ message: "Too many requests" });
