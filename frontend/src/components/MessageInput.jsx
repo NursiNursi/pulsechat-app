@@ -5,7 +5,7 @@ import { ImageIcon, SendIcon, XIcon } from "lucide-react";
 import toast from "react-hot-toast";
 
 function MessageInput() {
-  const playRandomKeyStrokeSound = useKeyboardSound();
+  const { playRandomKeyStrokeSound } = useKeyboardSound();
   const [text, setText] = useState();
   const [imagePreview, setImagePreview] = useState(null);
 
