@@ -8,6 +8,9 @@ export const arcjetMiddleware = async (req, res, next) => {
     console.log(JSON.stringify(decision.results, null, 2));
     console.log("IP:", req.ip);
     console.log("Arcjet results:", JSON.stringify(decision.results, null, 2));
+    console.log("cf-connecting-ip:", req.headers["cf-connecting-ip"]);
+    console.log("x-forwarded-for:", req.headers["x-forwarded-for"]);
+    console.log("req.ip:", req.ip);
 
     if (decision.isDenied()) {
       if (decision.reason.isRateLimit()) {
