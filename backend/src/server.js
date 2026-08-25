@@ -11,7 +11,7 @@ import { ENV } from "./lib/env.js";
 import { app, server } from "./lib/socket.js";
 
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
-app.set("trust proxy", 1);
+app.set("trust proxy", 2);
 
 const PORT = ENV.PORT || 3000;
 
