@@ -4,6 +4,7 @@ import { ENV } from "./env.js";
 
 const aj = arcjet({
   key: ENV.ARCJET_KEY,
+  platform: "cloudflare",
   rules: [
     // Shield protects your app from common attacks e.g. SQL injection
     shield({ mode: "LIVE" }),
