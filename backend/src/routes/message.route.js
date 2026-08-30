@@ -6,12 +6,13 @@ import {
   sendMessage,
 } from "../controllers/message.controller.js";
 import { authMiddleware } from "../middleware/auth.middleware.js";
-import { arcjetMiddleware } from "../middleware/arcjet.middleware.js";
+// import { arcjetMiddleware } from "../middleware/arcjet.middleware.js";
 
 const router = express.Router();
 
 // these middlewares execute in order - so request get rate-limited first, then authenticated
-router.use(arcjetMiddleware, authMiddleware);
+// router.use(arcjetMiddleware, authMiddleware);
+router.use(authMiddleware);
 
 router.get("/contacts", getAllContacts);
 router.get("/chats", getChatPartners);
