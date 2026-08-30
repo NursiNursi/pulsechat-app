@@ -1,4 +1,5 @@
 import { MessageCircleIcon } from "lucide-react";
+
 import { useChatStore } from "../store/useChatStore";
 
 function NoChatsFound() {

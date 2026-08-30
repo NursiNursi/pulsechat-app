@@ -1,5 +1,6 @@
-import aj from "../lib/arcjet.js";
 import { isSpoofedBot } from "@arcjet/inspect";
+
+import aj from "../lib/arcjet.js";
 
 export const arcjetMiddleware = async (req, res, next) => {
   try {

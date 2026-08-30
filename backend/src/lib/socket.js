@@ -1,6 +1,7 @@
-import { Server } from "socket.io";
-import http from "http";
 import express from "express";
+import http from "http";
+import { Server } from "socket.io";
+
 import { ENV } from "./env.js";
 import { socketAuthMiddleware } from "../middleware/socket.auth.middleware.js";
 

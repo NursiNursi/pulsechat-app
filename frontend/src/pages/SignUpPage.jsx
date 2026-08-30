@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { useAuthStore } from "../store/useAuthStore.js";
-import BorderAnimatedContainer from "../components/BorderAnimatedContainer.jsx";
-
+import { Link } from "react-router";
 import {
-  MessageCircleIcon,
+  LoaderIcon,
   LockIcon,
   MailIcon,
+  MessageCircleIcon,
   UserIcon,
-  LoaderIcon,
 } from "lucide-react";
-import { Link } from "react-router";
+
+import { useAuthStore } from "../store/useAuthStore.js";
+import BorderAnimatedContainer from "../components/BorderAnimatedContainer.jsx";
 
 function SignUpPage() {
   const [formData, setFormData] = useState({

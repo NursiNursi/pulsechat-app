@@ -1,6 +1,8 @@
 import { useEffect } from "react";
-import { useChatStore } from "../store/useChatStore";
+
 import UsersLoadingSkeleton from "./UsersLoadingSkeleton";
+
+import { useChatStore } from "../store/useChatStore";
 import { useAuthStore } from "../store/useAuthStore";
 
 function ContactList() {
