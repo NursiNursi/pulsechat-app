@@ -8,12 +8,11 @@ import { useChatStore } from "../store/useChatStore.js";
 
 function MessageInput() {
   const { playRandomKeyStrokeSound } = useKeyboardSound();
-  const [text, setText] = useState();
   const [imagePreview, setImagePreview] = useState(null);
 
   const fileInputRef = useRef(null);
 
-  const { sendMessage, isSoundEnabled } = useChatStore();
+  const { sendMessage, isSoundEnabled, text, setText } = useChatStore();
 
   const handleSendMessage = (e) => {
     e.preventDefault();
