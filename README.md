@@ -1,6 +1,16 @@
 # PulseChat App
 
-PulseChat is a real-time chat application built with a Node.js/Express backend and a React + Vite frontend. It supports user authentication, online presence, direct messaging, media attachments, and profile updates with a MongoDB-backed data model.
+PulseChat is a real-time chat application built with a Node.js/Express backend and a React + Vite frontend, backed by a MongoDB data model. This project was built as a **portfolio and full-stack (MERN) learning project** — it is not intended for general public/production use.
+
+## Project Purpose
+
+This project was built to:
+
+- Practice and demonstrate full-stack development skills from the ground up (authentication, real-time messaging, media uploads, etc.)
+- Serve as a learning exercise in integrating several third-party services (Cloudinary, Resend, Arcjet) into a single application
+- Serve as a showcase project for a developer portfolio
+
+> ⚠️ **Note:** Since this project is meant for learning and showcasing, it has not been fully hardened for real production use (e.g., no comprehensive security audit, only basic rate limiting, and environment configuration is set up for development/demo purposes).
 
 ## Overview
 
@@ -39,10 +49,10 @@ PulseChat is designed as a modern chat app that includes:
 - Arcjet for request protection
 - dotenv for environment configuration
 
-### Infrastructure / Deployment
+### Infrastructure / Deployment (optional, for demo purposes)
 
-- Nixpacks configuration included for deployment support
-- Static frontend build served by the backend in production mode
+- Nixpacks configuration included for demo deployment support
+- Static frontend build can be served by the backend in production mode
 
 ## Features
 
@@ -52,7 +62,7 @@ PulseChat is designed as a modern chat app that includes:
 - Chat history by conversation partner
 - Image upload support in messages and profile images
 - Responsive layout for desktop and mobile screens
-- Production-ready static asset serving for the built frontend
+- Static asset serving for the built frontend (a production-like setup shown for learning purposes)
 
 ## Project Structure
 
@@ -111,14 +121,14 @@ pulsechat-app/
 
 ## Prerequisites
 
-Before running the app, make sure you have:
+To run this project locally (e.g. for portfolio review or code exploration), make sure you have:
 
 - Node.js 20.19 or newer
 - npm
-- MongoDB instance or MongoDB Atlas connection string
-- Cloudinary account and API credentials
-- Resend account for email sending
-- Arcjet API key (optional but configured in the app)
+- A local MongoDB instance or a MongoDB Atlas connection string
+- A Cloudinary account and API credentials (a free tier account works fine for testing)
+- A Resend account for email sending (optional — can be skipped if you only want to test the chat features)
+- An Arcjet API key (optional)
 
 ## Installation
 
@@ -166,6 +176,8 @@ ARCJET_ENV=development
 ```
 
 > The frontend uses the backend API at `http://localhost:3000/api` in development mode via the Axios client configuration.
+>
+> Note: the values above are placeholders for local development/demo use. Do not commit real credentials or secrets to a public repository.
 
 ## Running the Application
 
@@ -193,7 +205,7 @@ Then open:
 http://localhost:5173
 ```
 
-### Production build
+### Production build (for demo purposes)
 
 From the project root:
 
@@ -201,7 +213,7 @@ From the project root:
 npm run build
 ```
 
-This installs dependencies in both subprojects and builds the frontend bundle. The backend can then serve production assets.
+This installs dependencies in both subprojects and builds the frontend bundle. The backend can then serve the production assets for demo purposes.
 
 ### Start production server
 
@@ -211,7 +223,7 @@ npm start
 
 This runs the backend server from the project root.
 
-## Usage
+## Usage (Demo)
 
 1. Open the frontend in your browser.
 2. Create a new account or log in.
@@ -237,8 +249,18 @@ The backend exposes API routes under `/api`.
 - `GET /api/message/:id` - Get conversation history with a user
 - `POST /api/message/send/:id` - Send a message to a user
 
+## What I Learned / Technical Challenges
+
+Some of the challenges explored and solved during development of this project:
+
+- Configuring Cloudinary (including handling a 403 error related to API key roles)
+- Fixing a database connection race condition (making sure `connectDB()` is `await`ed before `app.listen()`)
+- Debugging DNS resolution for MongoDB Atlas (switching from `mongodb+srv://` to a standard connection string when needed)
+- Fixing common React bugs: a component placed outside `<Routes>`, a missing `await` on an Axios call, and incorrect `finally` logic on a loading state
+- Adjusting Node.js version compatibility with Vite in the deployment configuration (Nixpacks)
+
 ## Notes
 
-- The backend serves the production frontend build from `../frontend/dist` when `NODE_ENV=production`.
+- The backend can serve the production frontend build from `../frontend/dist` when `NODE_ENV=production` — this is shown as an example setup, not for actual public hosting.
 - Socket.IO is used for live delivery of new messages and online user presence.
-- The workspace includes a root-level package.json script to simplify project setup and startup for deployment or local production use.
+- This project is open for learning purposes — feel free to explore the code, fork it, or use it as a learning reference.
